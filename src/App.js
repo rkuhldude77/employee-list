@@ -11,12 +11,14 @@ import EmployeeList from './EmployeeList/EmployeeList';
 // import EditEmployee from './EditEmployee/EditEmployee';
 import CreateEmployee from './CreateEmployee/CreateEmployee';
 
+//adding font awesome items to use in app
 library.add(faCheck)
 library.add(faTrashAlt)
 library.add(faTimes)
 library.add(faEdit)
 library.add(faPlus)
 
+//format numbers to currency
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
@@ -59,31 +61,38 @@ class App extends Component {
     showCreateEmployees: false
   }
 
+//shows or hides the create employee code
   toggleCreateHandler = () => {
     const doesShow = this.state.showCreateEmployees
     this.setState({showCreateEmployees: !doesShow})
   }
 
+//gets the value for first name from input field in CreateEmployee component
   changeFirstNameHandler = (event) => {
     this.setState({fname: event.target.value})
   }
 
+//gets the value for last name from input field in CreateEmployee component
   changeLastNamehandler = (event) => {
     this.setState({lname: event.target.value})
   }
 
+//gets the value for email from input field in CreateEmployee component
   changeEmailHandler = (event) => {
     this.setState({email: event.target.value})
   }
 
+//gets the value for phone from input field in CreateEmployee component
   changePhoneHandler = (event) => {
     this.setState({phone: event.target.value})
   }
 
+//gets the value for salary from input field in CreateEmployee component
   changeSalaryHandler = (event) => {
     this.setState({salary: event.target.value})
   }
 
+//Submit button in CreateEmployee component creates new employee object and adds to state.
   submitClickedhandler = () => {
     this.toggleCreateHandler()
     const ids = this.state.employees.filter(emp => emp.id)
@@ -101,6 +110,7 @@ class App extends Component {
     this.setState({employees: employees})
   }
 
+//removes employee from list
   deleteEmployeeHandler = (employeeIndex) => {
     const employees = [...this.state.employees]
     employees.splice(employeeIndex, 1)
@@ -111,6 +121,7 @@ class App extends Component {
 
     let createEmployees = null
 
+    //shows html for create employee and sends props to get data
     if(this.state.showCreateEmployees) {
       createEmployees = (
           <CreateEmployee 
@@ -119,10 +130,12 @@ class App extends Component {
           changeEmail={this.changeEmailHandler}
           changePhone={this.changePhoneHandler}
           changeSalary={this.changeSalaryHandler}
-          submitClick={this.submitClickedhandler} />
+          submitClick={this.submitClickedhandler}
+          cancelCreate={this.toggleCreateHandler} />
         )
     }
 
+    //creates html for the list of employees with props data
     let employeeList = (
       <div>
         {this.state.employees.map((employee, index) => {

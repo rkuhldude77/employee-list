@@ -1,6 +1,7 @@
 import React from 'react';
 import './CreateEmployee.css'
 
+//form to get new employee information
 const createEmployee = (props) => {
   return (
       <div className="CreateEmployee">
@@ -42,6 +43,7 @@ const createEmployee = (props) => {
             </div>
           </div>
           <button type="button" className="btn btn-success" onClick={props.submitClick}>Submit</button>
+          <button type="button" className="btn btn-danger" onClick={props.cancelCreate}>Cancel</button>
         </form>
       </div>
     )
